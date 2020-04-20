@@ -1,8 +1,8 @@
-package com.janwarlen;
+package com.janwarlen.recursion.first;
 
 /**
  * @ClassName: Recursion
- * @author: wangjian
+ * @author: janwarlen
  * @Date: 2020/2/19 13:53
  * @Description:
  */

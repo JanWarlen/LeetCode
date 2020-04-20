@@ -1,4 +1,4 @@
-package com.janwarlen;
+package com.janwarlen.recursion.first;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * @ClassName: Memoization
- * @author: wangjian
+ * @author: janwarlen
  * @Date: 2020/2/20 10:47
  * @Description:
  */

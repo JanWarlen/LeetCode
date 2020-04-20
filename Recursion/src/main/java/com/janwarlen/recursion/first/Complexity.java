@@ -1,8 +1,8 @@
-package com.janwarlen;
+package com.janwarlen.recursion.first;
 
 /**
  * @ClassName: Complexity
- * @author: wangjian
+ * @author: janwarlen
  * @Date: 2020/2/24 18:58
  * @Description:
  */
@@ -100,6 +100,7 @@ public class Complexity {
             return 1;
         }
         if (n < 0) {
+            // core part，avoid negative used too much stack
             return ((1 / x) * myPow(1 / x, -(n + 1)));
         }
         return (n % 2 == 0) ? myPow(x * x, n / 2) : x * myPow(x * x, n / 2);

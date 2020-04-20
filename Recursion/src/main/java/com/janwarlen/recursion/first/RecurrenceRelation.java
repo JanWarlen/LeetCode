@@ -1,11 +1,11 @@
-package com.janwarlen;
+package com.janwarlen.recursion.first;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @ClassName: RecurrenceRelation
- * @author: wangjian
+ * @author: janwarlen
  * @Date: 2020/2/19 18:10
  * @Description:
  */
