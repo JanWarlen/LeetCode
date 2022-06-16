@@ -15,11 +15,7 @@ bin
 */.settings
 */logs
 target
-*/target
 .settings
-.project
-.DS_Store
-.classpath
 .idea/
 .groovy
 .json

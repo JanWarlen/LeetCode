@@ -1,8 +1,15 @@
 package com.janwarlen.ac.array;
 
+import java.util.Arrays;
+
 public class RotateImage {
 
-    public void rotate(int[][] matrix) {
+    /**
+     * 1 2 3       7 4 1
+     * 4 5 6       8 5 2
+     * 7 8 9       9 6 3
+     */
+    public static void rotate(int[][] matrix) {
         int[][] res = new int[matrix.length][matrix.length];
         for (int j = 0; j < matrix.length; j++) {
             for (int i = matrix.length - 1; i >= 0; i--) {
@@ -55,6 +62,8 @@ public class RotateImage {
     }
 
     public static void main(String[] args) {
-
+        int[][] ints = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        rotate(ints);
+        System.out.println(Arrays.deepToString(ints));
     }
 }

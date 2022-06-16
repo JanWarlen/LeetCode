@@ -6,7 +6,7 @@ public class MergeIntervals {
 
     /**
      * 官方解法
-     * 思路基本一直，但是代码简洁，思路清晰
+     * 思路基本一致，但是代码简洁，思路清晰
      */
     public int[][] mergePro(int[][] intervals) {
         Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
@@ -50,11 +50,7 @@ public class MergeIntervals {
                 end = intervals[i + 1][1];
             }
         }
-        if (null == merge.get(start)) {
-            merge.put(start, end);
-        } else {
-            merge.put(intervals[intervals.length - 1][0], intervals[intervals.length - 1][1]);
-        }
+        merge.putIfAbsent(start, end);
         int[][] res = new int[merge.size()][2];
         int index = 0;
         for (Map.Entry<Integer, Integer> entry : merge.entrySet()) {

@@ -46,7 +46,7 @@ public class Conclusion {
         mergeTwoLists(l1, r1);*/
         ListNode l1 = new ListNode(2);
         ListNode r1 = new ListNode(1);
-        mergeTwoLists(l1, r1);
+        mergeTwoList(l1, r1);
     }
 
     public static ListNode mergeTwoList(ListNode l1, ListNode l2) {
@@ -71,24 +71,38 @@ public class Conclusion {
         return l1;
     }
 
-    /**
-     * 如果l2比l1小，则再和l1.next比较，如果小递归下去
-     * 如果l2比l1.next大，则l2插入,递归
-     */
-    public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        if (l1 == null && l2 == null) {
-            return null;
-        } else if (l1 == null) {
-            return l2;
-        } else if (l2 == null) {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode tmp = new ListNode(0);
+        ListNode res = tmp;
+        while (null != list1 && null != list2) {
+            if (list1.val <= list2.val) {
+                res.next = list1;
+                list1 = list1.next;
+            } else {
+                res.next = list2;
+                list2 = list2.next;
+            }
+            res = res.next;
+        }
+        if (null != list1) {
+            res.next = list1;
+        }
+        if (null != list2) {
+            res.next = list2;
+        }
+        return tmp.next;
+    }
+
+    public ListNode mergeTwoListsPro(ListNode l1, ListNode l2){
+        if(l1 == null) return l2;
+        if(l2 == null) return l1;
+        if(l1.val < l2.val){
+            l1.next = mergeTwoListsPro(l1.next, l2);
             return l1;
+        } else{
+            l2.next = mergeTwoListsPro(l1, l2.next);
+            return l2;
         }
-        if (l2.val <= l1.val) {
-            ListNode tmp = l1;
-            l1 = l2;
-            l2 = tmp;
-        }
-        return mergeTwoList(l1, l2);
     }
 
     // K-th Symbol in Grammar
@@ -125,6 +139,10 @@ public class Conclusion {
             return 0;
         }
         return kthGrammar(N, K - (1 << (int) Math.ceil(Math.log(K) / Math.log(2) - 1))) == 0 ? 1 : 0;
+    }
+
+    public int kthGrammarPro(int n, int k) {
+        return Integer.bitCount(k-1) & 1;
     }
 
     // Unique Binary Search Trees II
@@ -195,11 +213,9 @@ public class Conclusion {
             List<TreeNode> leftSubTree = generateTrees(start, i-1);
             List<TreeNode> rightSubTree = generateTrees(i + 1, end);
 
-            for(int k = 0; k < leftSubTree.size(); k++) {
-                TreeNode left = leftSubTree.get(k);
-                for(int l = 0; l < rightSubTree.size(); l++) {
-                    TreeNode right = rightSubTree.get(l);
-                    TreeNode now= new TreeNode(i);
+            for (TreeNode left : leftSubTree) {
+                for (TreeNode right : rightSubTree) {
+                    TreeNode now = new TreeNode(i);
                     now.left = left;
                     now.right = right;
                     list.add(now);
@@ -207,6 +223,44 @@ public class Conclusion {
             }
         }
         return list;
+    }
+
+
+    /**
+     * 用了动态规划
+     */
+    public static List<TreeNode> generateTreesPro(int n) {
+        List<TreeNode>[] result = new List[n + 1];
+        result[0] = new ArrayList<TreeNode>();
+        if (n == 0) {
+            return result[0];
+        }
+
+        result[0].add(null);
+        for (int len = 1; len <= n; len++) {
+            result[len] = new ArrayList<TreeNode>();
+            for (int j = 0; j < len; j++) {
+                for (TreeNode nodeL : result[j]) {
+                    for (TreeNode nodeR : result[len - j - 1]) {
+                        TreeNode node = new TreeNode(j + 1);
+                        node.left = nodeL;
+                        node.right = clone(nodeR, j + 1);
+                        result[len].add(node);
+                    }
+                }
+            }
+        }
+        return result[n];
+    }
+
+    private static TreeNode clone(TreeNode n, int offset) {
+        if (n == null) {
+            return null;
+        }
+        TreeNode node = new TreeNode(n.val + offset);
+        node.left = clone(n.left, offset);
+        node.right = clone(n.right, offset);
+        return node;
     }
 
 }

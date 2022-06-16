@@ -1,8 +1,10 @@
 package com.janwarlen.ac.array;
 
+import java.util.Arrays;
+
 public class PlusOne {
 
-    public int[] plusOne(int[] digits) {
+    public static int[] plusOne(int[] digits) {
         int plus = 1;
         for (int i = digits.length - 1; i >= 0 && 1 == plus; i--) {
             if (9 == digits[i]) {
@@ -40,6 +42,7 @@ public class PlusOne {
     }
 
     public static void main(String[] args) {
-        plusOneQ(new int[]{1,2,9});
+        System.out.println(Arrays.toString(plusOne(new int[]{1, 2, 9})));
+        System.out.println(Arrays.toString(plusOne(new int[]{1, 9, 9})));
     }
 }

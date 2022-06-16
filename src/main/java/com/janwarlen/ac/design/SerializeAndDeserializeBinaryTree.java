@@ -30,7 +30,7 @@ public class SerializeAndDeserializeBinaryTree {
     private TreeNode deserial(Queue<String> q) {
         String val = q.poll();
         if ("#".equals(val)) return null;
-        TreeNode root = new TreeNode(Integer.valueOf(val));
+        TreeNode root = new TreeNode(Integer.parseInt(val));
         root.left = deserial(q);
         root.right = deserial(q);
         return root;

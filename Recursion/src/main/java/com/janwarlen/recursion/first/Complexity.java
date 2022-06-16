@@ -55,6 +55,14 @@ public class Complexity {
         }
     }
 
+    /**
+     * 尾递归方式，代码简洁，耗时更简短，额外内存消耗也少
+     */
+    public int maxDepthPro(TreeNode root) {
+        if(root == null) return 0;
+        return 1 + Math.max(maxDepthPro(root.left), maxDepthPro(root.right));
+    }
+
 //    Pow(x, n)
     /**
      * Implement pow(x, n), which calculates x raised to the power n (x^n).
@@ -85,9 +93,10 @@ public class Complexity {
     /**
      * 百度来的答案:
      * 思路主要是尾递归减少stack使用，避免stack overflow
+     * 真正减少stack使用的是 'x * x'
      */
     public static double myPow(double x, int n) {
-        if (n > Integer.MAX_VALUE || n < Integer.MIN_VALUE || x == 0d) {
+        if (x == 0d) {
             return 0;
         }
         if (n == 0) {
